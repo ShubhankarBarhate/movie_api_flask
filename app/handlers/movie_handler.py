@@ -27,7 +27,7 @@ def get_movies():
 def get_movie(id):
     """
     Get movie by ID
-
+    ---
     parameters:
       - name: id
         in: path
