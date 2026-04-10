@@ -5,13 +5,21 @@ A simple rest api built using Flask to manage movies.
 flask -API
 MySql
 SQL Alchemy-ORM
+Flasgger (Swagger UI)
 pytest -unit testing
 Git and GitHub
 
 *How to run the project*
-1.Clone the repository git clone https://github.com/ShubhankarBarhate/movie_api_flask.git cd movie_api
-2.Create virtual envirnment python -m venv venv source venv/Scripts/activate
-3.Install dependencies pip install flask
-                       pip install flask-sqlalchemy pymysql
-                       
-4.Run the app pyrhon app.py
+1.Clone the repositorygit clone https://github.com/your-username/movie-api.git
+cd movie-api
+2.Create virtual envirnment python -m venv venv
+venv\Scripts\activate
+3.Install dependencies pip install -r requirements.txt
+4.Run the app python app/main.py
+The server will start at:http://127.0.0.1:5000/
+swagger:http://127.0.0.1:5000/apidocs/#/
+
+About Me
+Shubhankar Ranjit Barhate
+Backend-focused developer with experience in building APIs, working with data, and solving real-world problems.
+This project is mainly built as part of a backend development assignment and focuses on clean structure and clarity rather than complexity.
