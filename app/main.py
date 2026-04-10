@@ -2,10 +2,10 @@ from flask import Flask
 from app.database import db
 from app.handlers.movie_handler import movie_bp
 import os
+from flasgger import Swagger
 
 def create_app():
     app = Flask(__name__)
-
     # Database config
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
         "DATABASE_URL",
@@ -15,6 +15,7 @@ def create_app():
 
     # Initialize DB
     db.init_app(app)
+    Swagger(app)
 
     # Create tables
     with app.app_context():
