@@ -1,17 +1,31 @@
-from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy 
+from flask import Flask
+from app.database import db
+from app.handlers.movie_handler import movie_bp
+import os
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
 
-# Database config
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:manager@localhost/movie_db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    # Database config
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+        "DATABASE_URL",
+        "mysql+pymysql://root:manager@localhost/movie_db"
+    )
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+    # Initialize DB
+    db.init_app(app)
 
-# Create tables
-with app.app_context():
-    db.create_all()
+    # Create tables
+    with app.app_context():
+        db.create_all()
+
+    # Register routes
+    app.register_blueprint(movie_bp)
+
+    return app
+
+app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=True)
