@@ -8,7 +8,7 @@ def home():
     return {"message": "Movie API is running!"}
 
 
-# ✅ GET ALL MOVIES
+#  GET ALL MOVIES
 @movie_bp.route('/movies', methods=['GET'])
 def get_movies():
     """
@@ -22,11 +22,12 @@ def get_movies():
     return {"movies": [m.to_dict() for m in movies]}
 
 
-# ✅ GET MOVIE BY ID
+#  GET MOVIE BY ID
 @movie_bp.route('/movies/<int:id>', methods=['GET'])
 def get_movie(id):
     """
     Get movie by ID
+
     parameters:
       - name: id
         in: path
@@ -46,7 +47,7 @@ def get_movie(id):
     return movie.to_dict()
 
 
-# ✅ ADD MOVIE
+#  ADD MOVIE
 @movie_bp.route('/movies', methods=['POST'])
 def add_movie():
     """
@@ -84,7 +85,7 @@ def add_movie():
     return {"message": "Movie added", "movie": result.to_dict()}, 201
 
 
-# ✅ UPDATE MOVIE
+#  UPDATE MOVIE
 @movie_bp.route('/movies/<int:id>', methods=['PUT'])
 def update_movie(id):
     """
@@ -115,7 +116,7 @@ def update_movie(id):
     return {"message": "Movie updated", "movie": result.to_dict()}
 
 
-# ✅ DELETE MOVIE
+#  DELETE MOVIE
 @movie_bp.route('/movies/<int:id>', methods=['DELETE'])
 def delete_movie(id):
     """
