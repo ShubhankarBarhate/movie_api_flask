@@ -2,10 +2,10 @@ Movie API
 A simple rest api built using Flask to manage movies.
 
 *Tech Stack*
-flask -API 
+flask -API
 MySql
 SQL Alchemy-ORM
-pytest -unit testing 
+pytest -unit testing
 Git and GitHub
 
 *How to run the project*
