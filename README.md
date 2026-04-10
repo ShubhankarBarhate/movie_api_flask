@@ -1,4 +1,4 @@
-Movie API
+*Movie API*
 A simple rest api built using Flask to manage movies.
 
 *Tech Stack*
