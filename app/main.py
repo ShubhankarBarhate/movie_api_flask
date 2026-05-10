@@ -5,17 +5,19 @@ import os
 from flasgger import Swagger
 from dotenv import load_dotenv
 
-load_dotenv()  # Load .env
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))  # Load app/.env
 
-def create_app():
+def create_app(test_config=None):
     app = Flask(__name__)
 
-    db_url = os.getenv("DATABASE_URL")
-    if not db_url:
-        raise ValueError("DATABASE_URL is not set in .env")
-
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    if test_config:
+        app.config.update(test_config)
+
+    if not app.config['SQLALCHEMY_DATABASE_URI']:
+        raise ValueError("DATABASE_URL is not set in .env")
 
     db.init_app(app)
     Swagger(app)
@@ -27,7 +29,6 @@ def create_app():
 
     return app
 
-app = create_app()
-
 if __name__ == "__main__":
+    app = create_app()
     app.run(debug=os.getenv("FLASK_DEBUG") == "True")
